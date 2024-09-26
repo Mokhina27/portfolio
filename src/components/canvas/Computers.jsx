@@ -6,11 +6,10 @@ import CanvasLoader from "../Loader";
 const Computers = ({ screenSize }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
-  // Уменьшаем размер сцены и изменяем её позицию в зависимости от размера экрана
   let scale, position;
   if (screenSize < 400) {
     scale = 0.65;
-    position = [0, -5, -2.5]; // Сцена ниже
+    position = [0, -4.8, -2.5]; // Сцена ниже
   } else if (screenSize < 500) {
     scale = 0.70;
     position = [0, -4.8, -2.2]; // Сцена ниже
@@ -66,7 +65,7 @@ const ComputersCanvas = () => {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Update on mount
+    handleResize(); 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

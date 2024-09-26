@@ -44,58 +44,11 @@ const Hero = () => {
           </div>
         </a>
       </div>
-
-      {/* Styles for different screen sizes */}
-      <style jsx>{`
-        @media (max-width: 1500px) {
-          .${styles.heroHeadText} {
-            font-size: 30px;
-          }
-          .${styles.heroSubText} {
-            font-size: 20px;
-          }
-        }
-
-        @media (max-width: 1200px) {
-          .${styles.heroHeadText} {
-            font-size: 25px;
-          }
-          .${styles.heroSubText} {
-            font-size: 20px;
-          }
-        }
-
-        @media (max-width: 1000px) {
-          .${styles.heroHeadText} {
-            font-size: 25px;
-          }
-          .${styles.heroSubText} {
-            font-size: 20px;
-          }
-        }
-
-        @media (max-width: 800px) {
-          .${styles.heroHeadText} {
-            font-size: 25px;
-          }
-          .${styles.heroSubText} {
-            font-size: 20px;
-          }
-        }
-
-        @media (max-width: 600px) {
-          .${styles.heroHeadText} {
-            font-size: 20px;
-          }
-          .${styles.heroSubText} {
-            font-size: 16px;
-          }
-        }
-      `}</style>
     </section>
   );
 };
 
 export default Hero;
+
 
 
