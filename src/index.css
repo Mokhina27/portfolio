@@ -13,6 +13,56 @@
   color-scheme: dark;
 }
 
+.hero-heading {
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+
+.hero-subheading {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 780px) {
+  .hero-heading {
+    font-size: 3rem;
+  }
+
+  .hero-subheading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .hero-heading {
+    font-size: 2.5rem;
+  }
+
+  .hero-subheading {
+    font-size: 0.9rem;
+  }
+}
+
+/* Общие стили для кнопки прокрутки */
+.scroll-button-container {
+  bottom: 32px; /* Начальное положение кнопки */
+}
+
+@media (max-width: 780px) {
+  /* Опускаем кнопку ближе к низу экрана на маленьких экранах */
+  .scroll-button-container {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  /* На еще меньших экранах опускаем кнопку на край экрана */
+  .scroll-button-container {
+    bottom: 10px;
+  }
+}
+
+
+
 .hash-span {
   margin-top: -100px;
   padding-bottom: 100px;

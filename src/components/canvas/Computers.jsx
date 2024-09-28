@@ -6,26 +6,45 @@ import CanvasLoader from "../Loader";
 const Computers = ({ screenSize }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
-  let scale, position;
-  if (screenSize < 400) {
-    scale = 0.65;
-    position = [0, -4.8, -2.5]; // Сцена ниже
-  } else if (screenSize < 500) {
-    scale = 0.70;
-    position = [0, -4.8, -2.2]; // Сцена ниже
-  } else if (screenSize < 600) {
-    scale = 0.75;
-    position = [0, -4.5, -1.8]; // Сцена ниже
-  } else if (screenSize < 700) {
-    scale = 0.80;
-    position = [0, -4.2, -1.5]; // Сцена ниже
-  } else if (screenSize < 900) {
-    scale = 0.85;
-    position = [0, -3.8, -1.2]; // Сцена ниже
-  } else {
-    scale = 0.90;
-    position = [0, -3.5, -1]; // Сцена ниже
-  }
+    let scale, position;
+    if (screenSize < 300) {
+      scale = 0.35;
+      position = [0, -2.5, -0.7];
+    } else if (screenSize < 400) {
+      scale = 0.40;
+      position = [0, -2.5, -0.7];
+    } else if (screenSize < 500) {
+      scale = 0.50;
+      position = [0, -2.8, -0.8];
+    } else if (screenSize < 600) {
+      scale = 0.55;
+      position = [0, -2.2, -1];
+    } else if (screenSize < 700) {
+      scale = 0.75;
+      position = [0, -3.5, -1.5];
+    } else if (screenSize > 700) {
+      scale = 0.75;
+      position = [0, -3.5, -1.5];
+    } 
+      else if (screenSize > 780) {
+        scale = 0.75;
+        position = [0, -3.5, -1.5];
+    }
+      else if (screenSize < 800) {
+        scale = 0.73;
+        position = [0, -3.5, -1.2];
+    // } else if (screenSize < 900) {
+    //   scale = 0.85;
+    //   position = [0, -3.8, -1.2];
+    // } else if (screenSize == 900) {
+    //   scale = 0.85;
+    //   position = [0, -3.8, -1.2];
+    } else if (screenSize > 900) {
+      scale = 0.90;
+      position = [0, -3.5, -1.5];
+      scale = 0.9;
+      position = [0, -3.5, -1];
+    }
 
   return (
     <mesh>
@@ -93,6 +112,7 @@ const ComputersCanvas = () => {
 };
 
 export default ComputersCanvas;
+
 
 
 
