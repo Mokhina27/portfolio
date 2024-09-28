@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   VerticalTimeline,
@@ -7,14 +8,12 @@ import { motion } from "framer-motion";
 import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../styles";
-import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
+// Обработка состояния загрузки и проверка данных
 const ExperienceCard = ({ experience }) => {
   const { i18n } = useTranslation();
-  
-  // Используем текущий язык или fallback на английский
   const currentLang = i18n.language || 'en';
 
   return (
@@ -24,7 +23,7 @@ const ExperienceCard = ({ experience }) => {
         color: "#fff",
       }}
       contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date?.[currentLang] || experience.date?.['en']}  // fallback на английский
+      date={experience.date?.[currentLang] || experience.date?.['en']}
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
@@ -38,13 +37,13 @@ const ExperienceCard = ({ experience }) => {
     >
       <div>
         <h3 className='text-white text-[24px] font-bold'>
-          {experience.title?.[currentLang] || experience.title?.['en']}  {/* fallback на английский */}
+          {experience.title?.[currentLang] || experience.title?.['en']}
         </h3>
         <p
           className='text-secondary text-[16px] font-semibold'
           style={{ margin: 0 }}
         >
-          {experience.company_name?.[currentLang] || experience.company_name?.['en']}  {/* fallback на английский */}
+          {experience.company_name?.[currentLang] || experience.company_name?.['en']}
         </p>
       </div>
 
@@ -56,14 +55,33 @@ const ExperienceCard = ({ experience }) => {
           >
             {point}
           </li>
-        )) || <li className="text-white-100 text-[14px] pl-1 tracking-wider">No data available</li>}
+        )) || (
+          <li className="text-white-100 text-[14px] pl-1 tracking-wider">
+            No data available
+          </li>
+        )}
       </ul>
     </VerticalTimelineElement>
   );
 };
 
-const Experience = () => {
+const Experience = ({ experiences }) => {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Предполагаем, что fetchExperiences — это функция для получения данных
+    // Если данные берутся из другого места, адаптируйте этот блок
+    const fetchExperiences = async () => {
+      // Пример загрузки данных (замените на реальный API-запрос)
+      const fetchedExperiences = experiences || []; 
+      setData(fetchedExperiences);
+      setIsLoading(false);
+    };
+
+    fetchExperiences();
+  }, [experiences]);
 
   return (
     <>
@@ -77,14 +95,17 @@ const Experience = () => {
       </motion.div>
 
       <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
+        {isLoading ? (
+          <p className="text-center text-white">Loading experiences...</p>
+        ) : data && data.length > 0 ? (
+          <VerticalTimeline>
+            {data.map((experience, index) => (
+              <ExperienceCard key={`experience-${index}`} experience={experience} />
+            ))}
+          </VerticalTimeline>
+        ) : (
+          <p className="text-center text-white">No experiences available.</p>
+        )}
       </div>
     </>
   );
